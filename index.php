@@ -62,99 +62,129 @@ session_start();
                     <table class="tic">
               
                         	 <?php 
-                        	 $output = "";
+//                         	 $output = "";
                         	 
-                        	 if($_SESSION["cell-0-0"] === "X") {
+//                         	 if(array_key_exists("cell-0-0", $_SESSION) && $_SESSION["cell-0-0"] === "X") {
                         	  
-                        	   $output .= '<tr><td><span class="colorX">X</span></td>';   
+//                         	   $output .= '<tr><td><span class="colorX">X</span></td>';   
                         	 
-                        	 
-//                         	 elseif($_POST["cell-0-0"] === "X") {  
+//                         	 }
+//                         	 elseif(array_key_exists("cell-0-0", $_GET) && $_GET["cell-0-0"] === "X") {  
                               
+//                         	     $output .= '<tr><td><span class="colorX">X</span></td>';  
                             
-                            
-                            } else { 
-                                $output .= '<tr><td><input type="submit" class="reset field" name="cell-0-0" value="X" /></td>';
-                             
-                               $_SESSION["cell-0-0"] = $_GET["cell-0-0"];
-                            }
-                            
-                            if(array_key_exists ("cell-0-1", $_GET) && $_GET["cell-0-1"] === "X") {  
-                              
-                                 $output .= '<td><span class="colorX">X</span></td>';
-                            
-                            } else { 
-                                $output .= '<td><input type="submit" class="reset field" name="cell-0-1" value="X" /></td>';
+//                             } 
+//                             else { 
+//                                 $output .= '<tr><td><input type="submit" class="reset field" name="cell-0-0" value="X" /></td>';
                                 
-                            }
+//                                 if(array_key_exists("cell-0-0", $_GET)) {
+//                                     $_SESSION["cell-0-0"] = $_GET["cell-0-0"];
+//                                 }
+//                             }
                             
-                            if(array_key_exists ("cell-0-2", $_GET) && $_GET["cell-0-2"] === "X") {  
+//                             if(array_key_exists ("cell-0-1", $_GET) && $_GET["cell-0-1"] === "X") {  
                               
-                                $output .= '<td><span class="colorX">X</span></td><tr/>';
-                            } 
-                            else { 
-                                $output .= '<td><input type="submit" class="reset field" name="cell-0-2" value="X" /></td><tr/>';
-                            }
+//                                  $output .= '<td><span class="colorX">X</span></td>';
+                            
+//                             } else { 
+//                                 $output .= '<td><input type="submit" class="reset field" name="cell-0-1" value="X" /></td>';
+                                
+//                             }
+                            
+//                             if(array_key_exists ("cell-0-2", $_GET) && $_GET["cell-0-2"] === "X") {  
+                              
+//                                 $output .= '<td><span class="colorX">X</span></td><tr/>';
+//                             } 
+//                             else { 
+//                                 $output .= '<td><input type="submit" class="reset field" name="cell-0-2" value="X" /></td><tr/>';
+//                             }
                             
                             
                        
-                            if(array_key_exists ("cell-1-0", $_GET) && $_GET["cell-1-0"] === "X") {
+//                             if(array_key_exists ("cell-1-0", $_GET) && $_GET["cell-1-0"] === "X") {
                                 
-                                $output .= '<tr><td><span class="colorX">X</span></td>';
-                            }
-                            else {
-                                $output .= '<tr><td><input type="submit" class="reset field" name="cell-1-0" value="X" /></td>';
-                            }
+//                                 $output .= '<tr><td><span class="colorX">X</span></td>';
+//                             }
+//                             else {
+//                                 $output .= '<tr><td><input type="submit" class="reset field" name="cell-1-0" value="X" /></td>';
+//                             }
                             
-                            if(array_key_exists ("cell-1-1", $_GET) && $_GET["cell-1-1"] === "X") {
+//                             if(array_key_exists ("cell-1-1", $_GET) && $_GET["cell-1-1"] === "X") {
                                 
-                                $output .= '<td><span class="colorX">X</span></td>';
-                            }
-                            else {
-                                $output .= '<td><input type="submit" class="reset field" name="cell-1-1" value="X" /></td>';
-                            }
+//                                 $output .= '<td><span class="colorX">X</span></td>';
+//                             }
+//                             else {
+//                                 $output .= '<td><input type="submit" class="reset field" name="cell-1-1" value="X" /></td>';
+//                             }
                             
-                            if(array_key_exists ("cell-1-2", $_GET) && $_GET["cell-1-2"] === "X") {
+//                             if(array_key_exists ("cell-1-2", $_GET) && $_GET["cell-1-2"] === "X") {
                                 
-                                $output .= '<td><span class="colorX">X</span></td><tr/>';
-                            }
-                            else {
-                                $output .= '<td><input type="submit" class="reset field" name="cell-1-2" value="X" /></td><tr/>';
-                            }
+//                                 $output .= '<td><span class="colorX">X</span></td><tr/>';
+//                             }
+//                             else {
+//                                 $output .= '<td><input type="submit" class="reset field" name="cell-1-2" value="X" /></td><tr/>';
+//                             }
                             
                             
                             
-                            if(array_key_exists ("cell-2-0", $_GET) && $_GET["cell-2-0"] === "X") {
+//                             if(array_key_exists ("cell-2-0", $_GET) && $_GET["cell-2-0"] === "X") {
                                 
-                                $output .= '<tr><td><span class="colorX">X</span></td>';
-                            }
-                            else {
-                                $output .= '<tr><td><input type="submit" class="reset field" name="cell-2-0" value="X" /></td>';
-                            }
+//                                 $output .= '<tr><td><span class="colorX">X</span></td>';
+//                             }
+//                             else {
+//                                 $output .= '<tr><td><input type="submit" class="reset field" name="cell-2-0" value="X" /></td>';
+//                             }
                             
-                            if(array_key_exists ("cell-2-1", $_GET) && $_GET["cell-2-1"] === "X") {
+//                             if(array_key_exists ("cell-2-1", $_GET) && $_GET["cell-2-1"] === "X") {
                                 
-                                $output .= '<td><span class="colorX">X</span></td>';
-                            }
-                            else {
-                                $output .= '<td><input type="submit" class="reset field" name="cell-2-1" value="X" /></td>';
-                            }
+//                                 $output .= '<td><span class="colorX">X</span></td>';
+//                             }
+//                             else {
+//                                 $output .= '<td><input type="submit" class="reset field" name="cell-2-1" value="X" /></td>';
+//                             }
                             
-                            if(array_key_exists ("cell-2-2", $_GET) && $_GET["cell-2-2"] === "X") {
+//                             if(array_key_exists ("cell-2-2", $_GET) && $_GET["cell-2-2"] === "X") {
                                 
-                                $output .= '<td><span class="colorX">X</span></td><tr/>';
-                            }
-                            else {
-                                $output .= '<td><input type="submit" class="reset field" name="cell-2-2" value="X" /></td><tr/>';
+//                                 $output .= '<td><span class="colorX">X</span></td><tr/>';
+//                             }
+//                             else {
+//                                 $output .= '<td><input type="submit" class="reset field" name="cell-2-2" value="X" /></td><tr/>';
+//                             }
+                            
+//                             echo $output;
+                            
+//                             if(array_key_exists ("cell-0-1", $_GET))
+//                             {
+//                                 $_SESSION["cell-0-1"] = $_GET["cell-0-1"];
+//                             }
+                            
+
+                            $output = "";
+                            
+                            for($i = 0; $i < 3; $i++) {
+                                
+                                $output .= '<tr>';
+                                
+                                for($j = 0; $j < 3; $j++) {
+                                    
+                                    $index = $i."-".$j;
+                                    
+                                    if(array_key_exists($index, $_GET) && $_GET[$index] === "X" || array_key_exists($index, $_SESSION) && $_SESSION[$index] === "X") {
+                                        
+                                        $output .= '<td><span class="colorX">X</span></td>';
+                                    }
+                                    else {
+                                        
+                                        $output .= '<td><input type="submit" class="reset field" name="'.$index.'" value="X" /></td>';
+                                        
+//                                         $_SESSION[$index] = $_GET[$index];
+                                        
+                                    }
+                                }
+                                $output .= '</tr>';
                             }
                             
                             echo $output;
-                            
-                            if(array_key_exists ("cell-0-1", $_GET))
-                            {
-                                $_SESSION["cell-0-1"] = $_GET["cell-0-1"];
-                            }
-                            
                             ?>
                             
                     </table>
@@ -166,6 +196,9 @@ session_start();
 
 
 <?php
+
+
+    
 
 //require_once('TicTacToe.php');
 

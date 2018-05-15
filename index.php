@@ -1,17 +1,8 @@
 <?php
 session_start();
 
-// $_SESSION["cell-0-0"];
-// $_SESSION["cell-0-1"];
-// $_SESSION["cell-0-2"];
+require_once('Board.php');
 
-// $_SESSION["cell-1-0"];
-// $_SESSION["cell-1-1"];
-// $_SESSION["cell-1-2"];
-
-// $_SESSION["cell-2-0"];
-// $_SESSION["cell-2-1"];
-// $_SESSION["cell-2-2"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,149 +50,43 @@ session_start();
                 <h2>Your free browsergame!</h2>
                 <p>Type your game instructions here...</p>
                 <form method="get" action="index.php">
-                    <table class="tic">
-              
-                        	 <?php 
-//                         	 $output = "";
-                        	 
-//                         	 if(array_key_exists("cell-0-0", $_SESSION) && $_SESSION["cell-0-0"] === "X") {
-                        	  
-//                         	   $output .= '<tr><td><span class="colorX">X</span></td>';   
-                        	 
-//                         	 }
-//                         	 elseif(array_key_exists("cell-0-0", $_GET) && $_GET["cell-0-0"] === "X") {  
-                              
-//                         	     $output .= '<tr><td><span class="colorX">X</span></td>';  
-                            
-//                             } 
-//                             else { 
-//                                 $output .= '<tr><td><input type="submit" class="reset field" name="cell-0-0" value="X" /></td>';
-                                
-//                                 if(array_key_exists("cell-0-0", $_GET)) {
-//                                     $_SESSION["cell-0-0"] = $_GET["cell-0-0"];
-//                                 }
-//                             }
-                            
-//                             if(array_key_exists ("cell-0-1", $_GET) && $_GET["cell-0-1"] === "X") {  
-                              
-//                                  $output .= '<td><span class="colorX">X</span></td>';
-                            
-//                             } else { 
-//                                 $output .= '<td><input type="submit" class="reset field" name="cell-0-1" value="X" /></td>';
-                                
-//                             }
-                            
-//                             if(array_key_exists ("cell-0-2", $_GET) && $_GET["cell-0-2"] === "X") {  
-                              
-//                                 $output .= '<td><span class="colorX">X</span></td><tr/>';
-//                             } 
-//                             else { 
-//                                 $output .= '<td><input type="submit" class="reset field" name="cell-0-2" value="X" /></td><tr/>';
-//                             }
-                            
-                            
-                       
-//                             if(array_key_exists ("cell-1-0", $_GET) && $_GET["cell-1-0"] === "X") {
-                                
-//                                 $output .= '<tr><td><span class="colorX">X</span></td>';
-//                             }
-//                             else {
-//                                 $output .= '<tr><td><input type="submit" class="reset field" name="cell-1-0" value="X" /></td>';
-//                             }
-                            
-//                             if(array_key_exists ("cell-1-1", $_GET) && $_GET["cell-1-1"] === "X") {
-                                
-//                                 $output .= '<td><span class="colorX">X</span></td>';
-//                             }
-//                             else {
-//                                 $output .= '<td><input type="submit" class="reset field" name="cell-1-1" value="X" /></td>';
-//                             }
-                            
-//                             if(array_key_exists ("cell-1-2", $_GET) && $_GET["cell-1-2"] === "X") {
-                                
-//                                 $output .= '<td><span class="colorX">X</span></td><tr/>';
-//                             }
-//                             else {
-//                                 $output .= '<td><input type="submit" class="reset field" name="cell-1-2" value="X" /></td><tr/>';
-//                             }
-                            
-                            
-                            
-//                             if(array_key_exists ("cell-2-0", $_GET) && $_GET["cell-2-0"] === "X") {
-                                
-//                                 $output .= '<tr><td><span class="colorX">X</span></td>';
-//                             }
-//                             else {
-//                                 $output .= '<tr><td><input type="submit" class="reset field" name="cell-2-0" value="X" /></td>';
-//                             }
-                            
-//                             if(array_key_exists ("cell-2-1", $_GET) && $_GET["cell-2-1"] === "X") {
-                                
-//                                 $output .= '<td><span class="colorX">X</span></td>';
-//                             }
-//                             else {
-//                                 $output .= '<td><input type="submit" class="reset field" name="cell-2-1" value="X" /></td>';
-//                             }
-                            
-//                             if(array_key_exists ("cell-2-2", $_GET) && $_GET["cell-2-2"] === "X") {
-                                
-//                                 $output .= '<td><span class="colorX">X</span></td><tr/>';
-//                             }
-//                             else {
-//                                 $output .= '<td><input type="submit" class="reset field" name="cell-2-2" value="X" /></td><tr/>';
-//                             }
-                            
-//                             echo $output;
-                            
-//                             if(array_key_exists ("cell-0-1", $_GET))
-//                             {
-//                                 $_SESSION["cell-0-1"] = $_GET["cell-0-1"];
-//                             }
-                            
+                    
+                    <?php                        	
 
-                            $output = "";
+                    $output = "";                            
+
+                    $board = new Board();
                             
-                            for($i = 0; $i < 3; $i++) {
+                    if(isset($_SESSION["board"]) && !empty($_SESSION["board"])) {
                                 
-                                $output .= '<tr>';
+                        $board = unserialize($_SESSION["board"]);
+                    }
+
+                            
+                    for($i = 0; $i < 3; $i++) {                                                              
                                 
-                                for($j = 0; $j < 3; $j++) {
+                        for($j = 0; $j < 3; $j++) {
+                             
+                            $index = "cell-".$i."-".$j;
                                     
-                                    $index = $i."-".$j;
-                                    
-                                    if(array_key_exists($index, $_GET) && $_GET[$index] === "X" || array_key_exists($index, $_SESSION) && $_SESSION[$index] === "X") {
+                            if(isset($_GET[$index]) && $_GET[$index] === "X") {
+                                       
+                                $board->setValue($i, $j, "X");
                                         
-                                        $output .= '<td><span class="colorX">X</span></td>';
-                                    }
-                                    else {
-                                        
-                                        $output .= '<td><input type="submit" class="reset field" name="'.$index.'" value="X" /></td>';
-                                        
-//                                         $_SESSION[$index] = $_GET[$index];
-                                        
-                                    }
-                                }
-                                $output .= '</tr>';
                             }
+                        }
+                               
+                    }
                             
-                            echo $output;
-                            ?>
+                    $output .= $board->boardInHTML();
                             
-                    </table>
+                    $_SESSION["board"] = serialize($board);
+                            
+                    echo $output;
+                    ?>
+                            
                 </form>
             </article>
         </section>
     </body>
 </html>
-
-
-<?php
-
-
-    
-
-//require_once('TicTacToe.php');
-
-//print_r($_POST["cell-0-0"]);
-
-?>

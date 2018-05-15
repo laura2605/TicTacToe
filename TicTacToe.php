@@ -12,7 +12,14 @@ class TicTacToe {
         
         if($hasWin) {
             
-            $output = '<p>Player.$currentPlayer.has win!</p>';
+            for($i = 0; $i < 3; $i++) {
+                
+                for($j = 0; $j < 3; $j++) {
+                    
+                }
+            }
+            
+            $output = '<p>Player .$currentPlayer. has win!</p>';
             return $output;
         }
     }

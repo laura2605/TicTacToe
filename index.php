@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-require_once('Board.php');
+define ('BASEPATH', realpath(dirname(__FILE__)));
+require_once (BASEPATH.DIRECTORY_SEPARATOR.'autoload.php');
 
 ?>
 <!DOCTYPE html>
@@ -49,20 +50,21 @@ require_once('Board.php');
             <article id="mainContent">
                 <h2>Your free browsergame!</h2>
                 <p>Type your game instructions here...</p>
-                <form method="get" action="index.php">
                     
                     <?php                        	
 
                     $output = "";                            
 
+                    $ticTacToe = new TicTacToe();
                     $board = new Board();
-                            
+                    $playerA = new Player("A", "X");
+                    
                     if(isset($_SESSION["board"]) && !empty($_SESSION["board"])) {
                                 
                         $board = unserialize($_SESSION["board"]);
                     }
 
-                            
+//                     print_r($board);       
                     for($i = 0; $i < 3; $i++) {                                                              
                                 
                         for($j = 0; $j < 3; $j++) {
@@ -81,11 +83,13 @@ require_once('Board.php');
                     $output .= $board->boardInHTML();
                             
                     $_SESSION["board"] = serialize($board);
-                            
+                      
+                    $output .= $ticTacToe->hasWon($playerA, $board);
+                    
                     echo $output;
                     ?>
                             
-                </form>
+                
             </article>
         </section>
     </body>

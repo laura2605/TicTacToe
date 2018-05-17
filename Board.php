@@ -8,6 +8,11 @@ class Board {
         array(" "," "," ")
         );
     
+    public function getBoard() {
+    
+        return $this->board;
+    }
+    
     public function setValue($key1, $key2, $value) {
         
         if($key1 >= 0 && $key1 < count($this->board)
@@ -30,14 +35,16 @@ class Board {
     public function boardInHTML() {
         
         $output = "";
+        $output .= '<form method="get" action="index.php">';
         $output .= '<table class="tic">';
+        
         $index = "";
         
         for($i = 0; $i < count($this->board); $i++) {
             
             $output .= '<tr>';
             
-            for($j = 0; $j < count($this->board); $j++) {
+            for($j = 0; $j < count($this->board[$i]); $j++) {
                 
                 if(isset($this->board[$i][$j]) 
                     && $this->board[$i][$j] === "X") {
@@ -54,7 +61,8 @@ class Board {
             $output .= '</tr>';
             
         }
-        $output .= "</table>";
+        $output .= '</table>';
+        $output .= '</form>';
         
         return $output;
     }

@@ -54,26 +54,44 @@ require_once (BASEPATH.DIRECTORY_SEPARATOR.'autoload.php');
                     <?php                        	
 
                     $output = "";                            
-
-                    $ticTacToe = new TicTacToe();
-                    $board = new Board();
+                    
                     $playerA = new Player("A", "X");
+                    $playerB = new Player("B", "O");
+                    
+                    $currentPlayer = $playerA;
+                    
+                    if(isset($_SESSION["player"]) && !empty($_SESSION["player"])) {
+                        
+                        $lastPlayer = unserialize($_SESSION["player"]);
+                        
+                        if($lastPlayer->getName() === $playerA->getName()) {
+                            
+                            $currentPlayer = $playerB;
+                        }
+                        else {
+                            
+                            $currentPlayer = $playerA;
+                        }
+                    }
+                    print_r($currentPlayer);
+                    $board = new Board($playerA);
+                   
+                    $ticTacToe = new TicTacToe($board, $playerA, $playerB);
                     
                     if(isset($_SESSION["board"]) && !empty($_SESSION["board"])) {
                                 
                         $board = unserialize($_SESSION["board"]);
                     }
-
-//                     print_r($board);       
+                    
                     for($i = 0; $i < 3; $i++) {                                                              
                                 
                         for($j = 0; $j < 3; $j++) {
                              
                             $index = "cell-".$i."-".$j;
                                     
-                            if(isset($_GET[$index]) && $_GET[$index] === "X") {
+                            if(isset($_GET[$index]) && $_GET[$index] === $currentPlayer->getSymbol()) {
                                        
-                                $board->setValue($i, $j, "X");
+                                $board->setValue($i, $j, $currentPlayer->getSymbol());
                                         
                             }
                         }
@@ -83,8 +101,9 @@ require_once (BASEPATH.DIRECTORY_SEPARATOR.'autoload.php');
                     $output .= $board->boardInHTML();
                             
                     $_SESSION["board"] = serialize($board);
-                      
-                    $output .= $ticTacToe->hasWon($playerA, $board);
+                    $_SESSION["player"] = serialize($currentPlayer);
+                    
+                    $output .= $ticTacToe->hasWon();
                     
                     echo $output;
                     ?>

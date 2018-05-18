@@ -8,6 +8,13 @@ class Board {
         array(" "," "," ")
         );
     
+    private $currentPlayer;
+    
+    public function __construct($currentPlayer) {
+        
+        $this->currentPlayer = $currentPlayer;
+    }
+    
     public function getBoard() {
     
         return $this->board;
@@ -47,14 +54,14 @@ class Board {
             for($j = 0; $j < count($this->board[$i]); $j++) {
                 
                 if(isset($this->board[$i][$j]) 
-                    && $this->board[$i][$j] === "X") {
+                    && $this->board[$i][$j] === $this->currentPlayer->getSymbol()) {
                         
-                        $output .= '<td><span class="colorX">X</span></td>';
+                        $output .= '<td><span class="colorX">'.$this->currentPlayer->getSymbol().'</span></td>';
                     }
                  else {
                         
                     $index = "cell-".$i."-".$j;
-                    $output .= '<td><input type="submit" class="reset field" name="'.$index.'" value="X" /></td>';
+                    $output .= '<td><input type="submit" class="reset field" name="'.$index.'" value="'.$this->currentPlayer->getSymbol().'" /></td>';
                     
                     }
             }

@@ -2,10 +2,26 @@
 
 class TicTacToe {
     
+    /**
+     * @var Board $board
+     */
     private $board;
+    
+    /**
+     * @var Player $playerA
+     */
     private $playerA;
+    
+    /**
+     * @var Player $playerB
+     */
     private $playerB;
     
+    /**
+     * @param Board $board
+     * @param Player $playerA
+     * @param Player $playerB
+     */
     public function __construct($board, $playerA, $playerB) {
         
         $this->board = $board;
@@ -14,13 +30,13 @@ class TicTacToe {
     }
    
     /**
+     * returns a HTML paragraph if a player has won the game, the paragraph tells which player has won
      * 
+     * @return string $output
      */
     public function hasWon() {
         
         $output = "";
-        
-        $hasWin = false;
             
         $fieldsInRowPlayerA = 0;
         $fieldsInColumnPlayerA = 0;
@@ -48,7 +64,7 @@ class TicTacToe {
                 $output = '<p>Player '.$this->playerA->getName().' has won!</p>';
             }
             
-            elseif($fieldsInRowPlayerA === count($this->board->getBoard())) {
+            elseif($fieldsInRowPlayerB === count($this->board->getBoard())) {
                 
                 $output = '<p>Player '.$this->playerB->getName().' has won!</p>';
             }

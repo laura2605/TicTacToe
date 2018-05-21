@@ -9,7 +9,7 @@ require_once (BASEPATH.DIRECTORY_SEPARATOR.'autoload.php');
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Tic-Tac-Toe. This is the title. It is displayed in the titlebar of the window in most browsers.</title>
+        <title>Tic-Tac-Toe</title>
         <meta name="description" content="Tic-Tac-Toe-Game. Here is a short description for the page. This text is displayed e. g. in search engine result listings.">
         <style>
             table.tic td {
@@ -60,7 +60,7 @@ require_once (BASEPATH.DIRECTORY_SEPARATOR.'autoload.php');
                     
                     $currentPlayer = $playerA;
                     
-                    if(isset($_SESSION["player"]) && !empty($_SESSION["player"])) {
+                    if(isset($_SESSION["player"])) {
                         
                         $lastPlayer = unserialize($_SESSION["player"]);
                         
@@ -74,22 +74,27 @@ require_once (BASEPATH.DIRECTORY_SEPARATOR.'autoload.php');
                         }
                     }
                     print_r($currentPlayer);
-                    $board = new Board($playerA);
+                    echo "<br/>";
+                    print_r($playerA);
+                    echo "<br/>";
                    
+                    $board = new Board($currentPlayer, $playerA, $playerB);
+                    
                     $ticTacToe = new TicTacToe($board, $playerA, $playerB);
                     
-                    if(isset($_SESSION["board"]) && !empty($_SESSION["board"])) {
+                    if(isset($_SESSION["board"])) {
                                 
                         $board = unserialize($_SESSION["board"]);
+                        $board->setCurrentPlayer($currentPlayer);
                     }
                     
-                    for($i = 0; $i < 3; $i++) {                                                              
+                    for($i = 0; $i < count($board->getBoard()); $i++) {                                                              
                                 
-                        for($j = 0; $j < 3; $j++) {
+                        for($j = 0; $j < count($board->getBoard()); $j++) {
                              
                             $index = "cell-".$i."-".$j;
                                     
-                            if(isset($_GET[$index]) && $_GET[$index] === $currentPlayer->getSymbol()) {
+                            if(isset($_GET[$index])) {
                                        
                                 $board->setValue($i, $j, $currentPlayer->getSymbol());
                                         
@@ -97,13 +102,14 @@ require_once (BASEPATH.DIRECTORY_SEPARATOR.'autoload.php');
                         }
                                
                     }
-                            
+                    print_r($board);
                     $output .= $board->boardInHTML();
-                            
+                    $output .= $ticTacToe->hasWon();
+                    
                     $_SESSION["board"] = serialize($board);
                     $_SESSION["player"] = serialize($currentPlayer);
                     
-                    $output .= $ticTacToe->hasWon();
+                    
                     
                     echo $output;
                     ?>
